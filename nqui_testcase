@@ -1,0 +1,18 @@
+nqui@golgoth-29:~/Desktop/theshell/nqui$ a=ls $a (shell just act the first command (a=ls))
+nqui@golgoth-29:~/Desktop/theshell/nqui$ $a
+README.md  team_agreement.md
+nqui@golgoth-29:~/Desktop/theshell/nqui$ a=ls $a (dont know what command was execute)
+README.md  team_agreement.md
+nqui@golgoth-29:~/Desktop/theshell/nqui$ a=ls echo $a 
+ls
+nqui@golgoth-29:~/Desktop/theshell/nqui$ b=ls echo $a
+ls
+nqui@golgoth-29:~/Desktop/theshell/nqui$ echo $b
+
+nqui@golgoth-29:~/Desktop/theshell/nqui$ b=ls
+nqui@golgoth-29:~/Desktop/theshell/nqui$ echo $b
+ls
+nqui@golgoth-29:~/Desktop/theshell/nqui$ echo $c
+
+nqui@golgoth-29:~/Desktop/theshell/nqui$ 
+
