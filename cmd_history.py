@@ -5,9 +5,7 @@ import re
 from itertools import islice
 from subprocess import Popen, PIPE, run
 from shlex import split as shlex_split
-=======
 from itertools import islice
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
 
 
 def history_write(content):
@@ -16,7 +14,6 @@ def history_write(content):
     history_filename = '.py_history'
     history_path = os.path.join(os.path.abspath('.'), history_filename)
 
-<<<<<<< HEAD
     try:
         last_content = history_read(history_path, 'str').split('\n')[-2]
         if content == last_content:
@@ -24,8 +21,6 @@ def history_write(content):
     except IndexError:
         pass
 
-=======
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
     fd = os.open(history_path, os.O_CREAT | os.O_WRONLY)
     os.lseek(fd, 0, os.SEEK_END)  # Go to end of file
     # Write content
@@ -60,17 +55,14 @@ def print_history(num=None):
 
     history_filename = '.py_history'
     history_path = os.path.join(os.path.abspath('.'), history_filename)
-<<<<<<< HEAD
 
     previous_cmdlist = history_read(history_path, 'str').split('\n')[:-1]
     if num and '-c' in num:
         with open(history_path, 'w'):
             pass
     elif num and num.isnumeric():
-=======
     previous_cmdlist = history_read(history_path, 'str').split('\n')[:-1]
     if num and num.isnumeric():
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
         end = len(previous_cmdlist)
         start = end - int(num)
         if int(num) > end:
@@ -86,16 +78,12 @@ def print_history(num=None):
 
 
 def print_error():
-<<<<<<< HEAD
     # Print Error when there're many argument pass to ! command
 
-=======
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
     print('intek-sh$: history: too many arguments')
     exit(1)
 
 
-<<<<<<< HEAD
 def _double_exc(history_path):
     # Handle !! mark
     # Return end of file line
@@ -246,40 +234,33 @@ def run_built_in_func(line, func):
             print_error()
 
 
-=======
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
 def cmd_history():
     '''
     While working in the Bash shell it is common that you
     to want to repeat a command that you have recently executed
-<<<<<<< HEAD
     Bash keeps a history of executed commands in a history file .bash_history
     that you can access by simply typing history
-=======
 
     Bash keeps a history of executed commands in a history file .bash_history
     that you can access by simply typing history
 
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
     This will output a list of commands prefixed with an identification number.
     If you only want to see the last N entries in the history, type history N.
     To execute a command from your history, you can use the history expansion
     ! followed by the identification number.
-<<<<<<< HEAD
-    You can also use !! as a shortcut for executing the last command
-    bash: !1450: event not found
-=======
 
     You can also use !! as a shortcut for executing the last command
+    bash: !1450: event not found
+
+
+    You can also use !! as a shortcut for executing the last command
 
     bash: !1450: event not found
 
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
     !cat: executes that last command to begin with cat. Note that the matching
     string cannot contain any spaces.
     '''
 
-<<<<<<< HEAD
     built_in_functions = ['history']
 
     line = None
@@ -293,7 +274,6 @@ def cmd_history():
                 history_write(line)
             if line.startswith('history'):
                 run_built_in_func(line, 'history')
-=======
     cmd = None
 
     while cmd != 'exit':
@@ -307,7 +287,6 @@ def cmd_history():
                 print_history(args[1])
             else:
                 print_error()
->>>>>>> 69c3f049683ad31a22874957b2d6ac9648f06198
 
     # Create .py_history file
 
