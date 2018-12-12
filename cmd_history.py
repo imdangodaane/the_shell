@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import os
-<<<<<<< HEAD
 import re
 from itertools import islice
 from subprocess import Popen, PIPE, run
