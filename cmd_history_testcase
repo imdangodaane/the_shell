@@ -1,0 +1,14 @@
+history
+history -c
+history 50
+history 1
+history 23
+history -5
+
+!!
+!-5
+!-1
+!2
+!50
+!7 !2 !1
+!2!ads!45
