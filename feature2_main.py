@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import curses
 import sys
+from curses import wrapper
 
 
 def screen_init():
@@ -30,10 +31,10 @@ def screen_config(stdscr):
     stdscr.bkgdset(' ', curses.color_pair(1))
 
 
-def screen_operate():
+def screen_operate(stdscr):
     # Init a new screen window with prompt, create some variables for
     # handling command from user input
-    stdscr = screen_init()
+    # stdscr = screen_init()
     # screen_config(stdscr)
     stdscr.addstr("intek-sh$ ")
     cmd = ''
@@ -119,7 +120,7 @@ def screen_operate():
                 stdscr.move(current_y, current_x + 1)
                 current_y, current_x = stdscr.getyx()
 
-    screen_terminate(stdscr)
+    # screen_terminate(stdscr)
 
 
 def cmdline_edition():
@@ -139,7 +140,7 @@ def built_in_history():
 
 
 def main():
-    cmdline_edition()
+    wrapper(screen_operate)
 
 
 if __name__ == '__main__':
