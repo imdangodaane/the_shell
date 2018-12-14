@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 import readline
 import os
+import re
 
-class MyCompleter(object):  # Custom completer
+
+class MyCompleter(object):
     def __init__(self):
         self.options = []
 
@@ -19,21 +21,32 @@ class MyCompleter(object):  # Custom completer
         except KeyError:
             pass
 
+    def find_path_from_buffer(self, buffer):
+        pattern = re.compile('.*/')
+        return pattern.search(buffer).group()
+
     def complete(self, text, state):
-        if state == 0:  # on first trigger, build possible matches
-            if text:  # cache matches (entries that start with entered text)
-                if text.startswith('./'):
-                    self.options = os.listdir()
-                    print(self.options)
-                else:
-                    self.options = self.find_matches()
+        self.options = self.find_matches()
+        buffer = readline.get_line_buffer()
+
+        if buffer:
+            if buffer.startswith('.'):
+                try:
+                    path = self.find_path_from_buffer(buffer)
+                    self.options = os.listdir(path)
+                except FileNotFoundError:
+                    self.options = []
+        else:
+            self.options = []
+
+        if state == 0:
+            if text:
                 self.matches = [s for s in self.options
                                 if s and s.startswith(text)]
-            else:  # no text entered, all matches possible
+            else:
                 self.matches = self.options
-        # return match indexed by state
         try:
-            return self.matches[state]
+            return self.matches[state] + ' '
         except IndexError:
             return None
 
